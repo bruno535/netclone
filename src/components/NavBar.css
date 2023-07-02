@@ -1,0 +1,33 @@
+nav {
+    background-color: #141414;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+}
+
+nav img {
+    height: 75px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+nav ul li a:hover {
+    color: #e50914;
+}

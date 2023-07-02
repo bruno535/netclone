@@ -1,0 +1,42 @@
+footer {
+    background-color: #222;
+    padding: 20px;
+    color: #666;
+    text-align: center;
+    margin-top: 200px;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-links ul li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.social-media-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social-media-links ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-media-links ul li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.netflix-info p {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
