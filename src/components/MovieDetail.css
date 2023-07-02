@@ -57,4 +57,14 @@
         font-size: 28px;
         margin-bottom: 14px;
     }
+
+    .movie-details img {
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-details img {
+        object-fit: contain;
+    }
 }
