@@ -63,3 +63,8 @@
 .filmsSeries {
     margin-top: 20vh;
 }
+
+.movie-poster {
+    width: 200px;
+    height: 300px;
+}
