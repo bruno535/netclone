@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from './img/logo.png'
 import './NavBar.css';
 
 const NavBar = () => {
@@ -52,7 +53,7 @@ const NavBar = () => {
                 <li>
                     <Link to="/">
                         <img
-                            src="https://www.caviarcriativo.com/storage/2020/06/logotipo-da-netflix.jpg"
+                            src={logo}
                             alt="Netflix Logo"
                         />
                     </Link>
