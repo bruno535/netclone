@@ -1,33 +1,65 @@
 nav {
-    background-color: #141414;
     position: fixed;
     top: 0;
-    z-index: 1;
+    left: 0;
     width: 100%;
-}
-
-nav img {
-    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    z-index: 999;
+    transition: background-color 0.3s ease;
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     align-items: center;
+    list-style: none;
 }
 
 nav ul li {
-    margin-right: 20px;
+    margin-right: 15px;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
-    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
     color: #e50914;
+}
+
+nav ul li img {
+    height: 40px;
+}
+
+nav form {
+    display: flex;
+    align-items: center;
+}
+
+nav form input[type='text'] {
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    margin-right: 10px;
+}
+
+nav form button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+nav form button:focus {
+    outline: none;
+}
+
+nav svg {
+    color: #fff;
+    font-size: 20px;
+    transition: color 0.3s ease;
 }

@@ -1,71 +1,77 @@
-.movie-details {
-    position: relative;
-    width: 100%;
+.movieDetails {
     height: 100vh;
-    background-color: #000;
-    overflow: hidden;
+    display: flex;
 }
 
-.movie-details img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.movie-details iframe {
-    position: absolute;
+.movieDetails img {
     top: 0;
     left: 0;
-    width: 100%;
+    width: 50%;
     height: 100%;
+    object-fit: contain;
+    z-index: -1;
 }
 
-.movie-details>div {
-    position: absolute;
-    bottom: 20px;
-    left: 30px;
-    top: 40vh;
+.movieDetails h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
     color: #fff;
 }
 
-.movie-details h2 {
-    font-size: 32px;
-    margin-bottom: 16px;
+.movieDetails .movieDetailsContent {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    flex-direction: column;
+    padding: 30px;
 }
 
-.movie-details a {
-    color: #fff;
-    text-decoration: none;
+.movieDetails .movieDetailsContent div p {
+    text-align: initial;
 }
 
-.voltar {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+.movieDetails .movieDetailsContent div {
+    display: block;
+    text-align: center;
+    width: 100%;
 }
 
-/* Estilos para dispositivos móveis */
-@media (max-width: 767px) {
-    .movie-details h2 {
-        font-size: 24px;
-        margin-bottom: 12px;
+.movieDetails .movieDetailsContent .buttons {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .movieDetails {
+        flex-direction: column;
+    }
+
+    .movieDetails img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+    }
+
+    .movieDetails .movieDetailsContent {
+        width: 100%;
     }
 }
 
-/* Estilos para tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .movie-details h2 {
-        font-size: 28px;
-        margin-bottom: 14px;
+@media (max-width: 480px) {
+    .movieDetails img {
+        height: 30%;
     }
 
-    .movie-details img {
-        object-fit: contain;
+    .movieDetails .movieDetailsContent h2 {
+        font-size: 20px;
     }
-}
 
-@media (min-width: 1024px) {
-    .movie-details img {
-        object-fit: contain;
+    .movieDetails .movieDetailsContent .overview {
+        display: none;
+    }
+
+    .movieDetails .movieDetailsContent .buttons button {
+        font-size: 12px;
     }
 }

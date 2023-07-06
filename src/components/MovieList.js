@@ -7,8 +7,6 @@ import NavBar from './NavBar.js';
 import Banner from './Banner.js';
 import Footer from './Footer.js';
 
-import './MovieList.css';
-
 const MovieList = () => {
     const navigate = useNavigate();
     const [popularFilms, setPopularFilms] = useState([]);
@@ -19,27 +17,20 @@ const MovieList = () => {
     useEffect(() => {
         const fetchData = async () => {
             const apiKey = process.env.REACT_APP_API_KEY;
-            const urlPopular = `https://api.themoviedb.org/3/discover/movie?language=pt-BR&sort_by=popularity.desc&api_key=${apiKey}`;
-            const urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&api_key=${apiKey}`;
-            const urlUpcoming = `https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&api_key=${apiKey}`;
-            const urlNowPlaying = `https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&api_key=${apiKey}`;
+            const urls = [
+                `https://api.themoviedb.org/3/discover/movie?language=pt-BR&sort_by=popularity.desc&api_key=${apiKey}`,
+                `https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&api_key=${apiKey}`,
+                `https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&api_key=${apiKey}`,
+                `https://api.themoviedb.org/3/movie/now_playing?language=pt-BR&api_key=${apiKey}`
+            ];
 
             try {
-                const responsePopular = await fetch(urlPopular);
-                const dataPopular = await responsePopular.json();
-                setPopularFilms(dataPopular.results);
-
-                const responseTopRated = await fetch(urlTopRated);
-                const dataTopRated = await responseTopRated.json();
-                setTopRatedFilms(dataTopRated.results);
-
-                const responseUpcoming = await fetch(urlUpcoming);
-                const dataUpcoming = await responseUpcoming.json();
-                setUpcomingFilms(dataUpcoming.results);
-
-                const responseNowPlaying = await fetch(urlNowPlaying);
-                const dataNowPlaying = await responseNowPlaying.json();
-                setNowPlayingFilms(dataNowPlaying.results);
+                const responses = await Promise.all(urls.map(url => fetch(url)));
+                const data = await Promise.all(responses.map(response => response.json()));
+                setPopularFilms(data[0].results);
+                setTopRatedFilms(data[1].results);
+                setUpcomingFilms(data[2].results);
+                setNowPlayingFilms(data[3].results);
             } catch (error) {
                 console.log(error);
             }
@@ -70,18 +61,19 @@ const MovieList = () => {
             responsive={{
                 0: { items: 2 },
                 510: { items: 3 },
-                768: { items: 5 },
+                768: { items: 4 },
+                850: { items: 5 },
                 1024: { items: 7 },
             }}
             renderPrevButton={({ isDisabled }) => (
                 <GrLinkPrevious
-                    className="alice-carousel__prev-btn"
+                    className="buttonPrev"
                     disabled={isDisabled}
                 />
             )}
             renderNextButton={({ isDisabled }) => (
                 <GrLinkNext
-                    className="alice-carousel__next-btn"
+                    className="buttonNext"
                     disabled={isDisabled}
                 />
             )}
@@ -92,7 +84,7 @@ const MovieList = () => {
         <>
             <NavBar />
             <Banner />
-            <div className="movie-list">
+            <div className="movieList">
                 <h2>Filmes Populares</h2>
                 {renderMovieList(popularFilms)}
 

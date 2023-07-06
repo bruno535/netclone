@@ -1,68 +1,38 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .alice-carousel__prev-btn {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .alice-carousel__next-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .buttonPlay {
-    padding: 12px 24px;
-    margin-right: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: #e50914;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .buttonPlay:hover {
-    background-color: #ca050f;
-  }
-  
-  .buttonMyList {
-    padding: 12px 24px;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: rgba(192, 192, 192, 0.747);
-    color: black;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .buttonMyList:hover {
-    background-color: rgba(161, 159, 159, 0.774);
-  }
-  
+  background-color: black;
+  color: white;
+}
+
+.button1,
+.button2 {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.button1 {
+  background-color: #e50914;
+  color: white;
+}
+
+.button2 {
+  background-color: #333;
+  color: white
+}
+
+.button1:hover,
+.button2:hover {
+  background-color: #c6000b;
+}
+
+.voltar {
+  position: absolute;
+  height: 60px;
+  width: 100px;
+  top: 7px;
+  right: 10px;
+}

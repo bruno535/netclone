@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import AliceCarousel from 'react-alice-carousel';
 import NavBar from '../NavBar.js';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import '../MovieList.css';
 
-function Films() {
+const Films = ({ isSerie }) => {
   const navigate = useNavigate();
   const [films, setFilms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      const apiKey = process.env.REACT_APP_API_KEY;
-      const urlGenres = `https://api.themoviedb.org/3/genre/movie/list?language=pt-BR&api_key=${apiKey}`;
-      const urlMoviesByGenre = `https://api.themoviedb.org/3/discover/movie?language=pt-BR&api_key=${apiKey}`;
-
+    const fetchData = async () => {
       try {
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const genreType = isSerie ? 'tv' : 'movie';
+        const urlGenres = `https://api.themoviedb.org/3/genre/${genreType}/list?language=pt-BR&api_key=${apiKey}`;
+        const urlMoviesByGenre = `https://api.themoviedb.org/3/discover/${genreType}?language=pt-BR&api_key=${apiKey}`;
+
         const [responseGenres, responseMoviesByGenre] = await Promise.all([
           fetch(urlGenres),
           fetch(urlMoviesByGenre)
@@ -40,18 +41,19 @@ function Films() {
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     fetchData();
-  }, []);
+  }, [isSerie]);
 
   const handleMovieClick = (movieId) => {
-    navigate(`/movie/${movieId}`);
+    const path = isSerie ? `/serie/${movieId}` : `/movie/${movieId}`;
+    navigate(path);
   };
 
   const renderMovieList = (genreId) => {
     const genreFilms = films.find((genre) => genre.genreId === genreId)?.films || [];
-    const emptyDivsCount = Math.max(7 - genreFilms.length, 0);
+    const emptyDivsCount = Math.max(20 - genreFilms.length, 0);
     const movieElements = genreFilms.map((movie) => (
       <div
         key={movie.id}
@@ -61,45 +63,41 @@ function Films() {
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
-          className="movie-poster"
         />
       </div>
     ));
-    const emptyDivs = Array(emptyDivsCount).fill(<div className="empty-movie" />);
+    const emptyDivs = Array(emptyDivsCount).fill(<div key={genreId} className="empty-movie" />);
     return movieElements.concat(emptyDivs);
   };
 
   const renderGenres = () => {
     return (
-      <div className="genres">
+      <div>
         {films.map((genre) => (
-          <div key={genre.genreId}>
+          <div key={genre.genreId} className='movieList'>
             <h2>{genre.genreName}</h2>
             <AliceCarousel
               disableDotsControls
               items={renderMovieList(genre.genreId)}
               responsive={{
                 0: { items: 2 },
-                768: { items: 5 },
+                510: { items: 3 },
+                768: { items: 4 },
+                850: { items: 5 },
                 1024: { items: 7 },
               }}
               renderPrevButton={({ isDisabled }) => (
-                <button
-                  className="alice-carousel__prev-btn"
+                <GrLinkPrevious
+                  className="buttonPrev"
                   disabled={isDisabled}
-                  style={{ left: '-40px', color: 'transparent' }}
-                >
-                  Prev
-                </button>
+                />
               )}
               renderNextButton={({ isDisabled }) => (
-                <button
-                  className="alice-carousel__next-btn"
+
+                <GrLinkNext
+                  className="buttonNext"
                   disabled={isDisabled}
-                  style={{ right: '-15px', color: 'transparent' }}
-                >
-                  Next
-                </button>
+                />
               )}
             />
           </div>
@@ -115,13 +113,13 @@ function Films() {
       ) : (
         <>
           <NavBar />
-          <div className="movie-list filmsSeries">
+          <div>
             {renderGenres()}
           </div>
         </>
       )}
     </>
   );
-}
+};
 
 export default Films;

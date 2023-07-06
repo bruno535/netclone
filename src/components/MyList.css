@@ -1,0 +1,22 @@
+.myListContainer {
+    margin-top: 10vh;
+}
+
+.myListContainer .myListMovie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.myListContainer .myListMovie img {
+    height: auto;
+    width: 100%;
+    border-radius: 7px;
+    transition: transform 0.3s ease;
+    padding: 2px;
+}
+
+.myListContainer .myListMovie:hover img {
+    transform: scale(0.98);
+}

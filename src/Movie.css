@@ -1,0 +1,72 @@
+.movieList {
+    padding: 20px;
+}
+
+.movieList h2 {
+    color: #fff;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.movie {
+    position: relative;
+    cursor: pointer;
+}
+
+.movie img {
+    width: 100%;
+    height: auto;
+    border-radius: 7px;
+    transition: transform 0.3s ease;
+    padding: 2px;
+}
+
+.movie:hover img {
+    transform: scale(0.98);
+}
+
+.buttonPrev,
+.buttonNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #fff;
+    background-color: rgba(156, 156, 156, 0.5);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 50%;
+}
+
+.buttonPrev {
+    left: -20px;
+}
+
+.buttonNext {
+    right: -20px;
+}
+
+.buttonPrev:hover,
+.buttonNext:hover {
+    background-color: rgba(139, 139, 139, 0.8);
+}
+
+.buttonPrev.disabled,
+.buttonNext.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+    .movieList h2 {
+        font-size: 20px;
+    }
+
+    .buttonPrev,
+    .buttonNext {
+        font-size: 24px;
+        padding: 8px;
+    }
+}

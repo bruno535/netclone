@@ -7,9 +7,8 @@ function MovieTrailer({ movie }) {
         async function fetchTrailer() {
             const apiKey = process.env.REACT_APP_API_KEY_YT;
             const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${encodeURIComponent(
-                movie?.title
+                movie.title ? `${movie.title} trailer` : `${movie.name} trailer`
             )}&key=${apiKey}`;
-
             try {
                 const response = await fetch(searchUrl);
                 const data = await response.json();

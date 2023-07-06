@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import logo from './img/logo.png'
+import logo from './img/logo.png';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -52,14 +52,17 @@ const NavBar = () => {
             <ul className={`menu ${showMenu ? 'open' : ''}`}>
                 <li>
                     <Link to="/">
-                        <img
-                            src={logo}
-                            alt="Netflix Logo"
-                        />
+                        <img src={logo} alt="Netflix Logo" />
                     </Link>
                 </li>
                 <li>
                     <Link to="/films">Filmes</Link>
+                </li>
+                <li>
+                    <Link to="/series">Series</Link>
+                </li>
+                <li>
+                    <Link to="/my-list">Minha Lista</Link>
                 </li>
                 <li>
                     <FaSearch />
