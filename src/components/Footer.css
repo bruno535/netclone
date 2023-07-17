@@ -1,3 +1,4 @@
+/* Estilo para o componente de rodapé */
 footer {
     background-color: #222;
     padding: 20px;
@@ -39,4 +40,10 @@ footer {
 .netflix-info p {
     margin-top: 20px;
     font-size: 0.8rem;
+}
+
+/* Estilo para os ícones das redes sociais */
+.footer-links ul li p i,
+.social-media-links ul li p i {
+    margin-right: 5px;
 }

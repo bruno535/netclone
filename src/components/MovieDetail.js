@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import MovieTrailer from './MovieTrailer.js';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import MovieTrailer from './MovieTrailer';
 import './MovieDetail.css';
 
 const MovieDetails = () => {
@@ -11,7 +12,8 @@ const MovieDetails = () => {
     useEffect(() => {
         const fetchMovie = async () => {
             const apiKey = process.env.REACT_APP_API_KEY;
-            const url = `https://api.themoviedb.org/3/${!serieId ? `movie/${movieId}` : `tv/${serieId}`}?language=pt-BR&api_key=${apiKey}`;
+            const url = `https://api.themoviedb.org/3/${!serieId ? `movie/${movieId}` : `tv/${serieId}`
+                }?language=pt-BR&api_key=${apiKey}`;
 
             try {
                 const response = await fetch(url);
@@ -47,39 +49,12 @@ const MovieDetails = () => {
     };
 
     if (!movie) {
-        return <div>Loading...</div>;
-    }
-
-    const renderMovieDetails = () => {
         return (
-            <div className='movieDetailsContent'>
-                <div>
-                    <h2>{`${movie.title || movie.name} (${movie.original_title || movie.original_name})`}</h2>
-                    <h4>{`${movie.release_date || movie.first_air_date}${movie.last_air_date ? ` - ${movie.last_air_date}` : ''}`}</h4>
-                    <a href={movie.homepage}>Link: Pagina Oficial</a>
-                    {movie.number_of_episodes && <span>{`Numero de episódios: ${movie.number_of_episodes}`}</span>}
-                    {movie.number_of_seasons && <span>{`Numero de temporadas: ${movie.number_of_seasons}`}</span>}
-                    <p>{`Criador(es): ${movie.production_companies.map(c => c.name)}`}</p>
-                    <div>
-                        <h4 className='overview'>Sinopse</h4>
-                        <h3>{movie.tagline}</h3>
-                        <p className='overview'>{movie.overview}</p>
-                    </div>
-                </div>
-                <div className='buttons'>
-                    <button className="button1" onClick={handlePlayClick}>
-                        Play
-                    </button>
-                    <button className="button2" onClick={handleAddToListClick}>
-                        Adicionar à Lista
-                    </button>
-                    <Link className="button2" to="/">
-                        Sair
-                    </Link>
-                </div>
+            <div>
+                <AiOutlineLoading3Quarters className="loading" />
             </div>
         );
-    };
+    }
 
     return (
         <div className="movieDetails">
@@ -92,7 +67,48 @@ const MovieDetails = () => {
                 <MovieTrailer movie={movie} />
             )}
 
-            {!showVideo ? renderMovieDetails() : (
+            {!showVideo ? (
+                <div className="movieDetailsContent">
+                    <div>
+                        <h2>
+                            {`${movie.title || movie.name} (${movie.original_title || movie.original_name
+                                })`}
+                        </h2>
+                        <h4>
+                            {`${movie.release_date || movie.first_air_date}${movie.last_air_date ? ` - ${movie.last_air_date}` : ''
+                                }`}
+                        </h4>
+                        {movie.homepage && (
+                            <a href={movie.homepage}>Link: Pagina Oficial</a>
+                        )}
+                        {movie.number_of_episodes && (
+                            <span>{`Numero de episódios: ${movie.number_of_episodes}`}</span>
+                        )}
+                        {movie.number_of_seasons && (
+                            <span>{`Numero de temporadas: ${movie.number_of_seasons}`}</span>
+                        )}
+                        <p>{`Criador(es): ${movie.production_companies
+                            .map((c) => c.name)
+                            .join(', ')}`}</p>
+                        <div>
+                            <h4 className="overview">Sinopse</h4>
+                            {movie.tagline && <h3>{movie.tagline}</h3>}
+                            <p className="overview">{movie.overview}</p>
+                        </div>
+                    </div>
+                    <div className="buttons">
+                        <button className="button1" onClick={handlePlayClick}>
+                            Play
+                        </button>
+                        <button className="button2" onClick={handleAddToListClick}>
+                            Adicionar à Lista
+                        </button>
+                        <Link className="button2" to="/">
+                            Sair
+                        </Link>
+                    </div>
+                </div>
+            ) : (
                 <button className="voltar button1" onClick={handleBackClick}>
                     Voltar
                 </button>

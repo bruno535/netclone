@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css'
+import './Footer.css';
 
 function Footer() {
     return (
@@ -7,35 +7,35 @@ function Footer() {
             <div className="footer-links">
                 <ul>
                     <li>
-                        <p>Perguntas Frequentes</p>
+                        <a href="/">Perguntas Frequentes</a>
                     </li>
                     <li>
-                        <p>Centro de Ajuda</p>
+                        <a href="/">Centro de Ajuda</a>
                     </li>
                     <li>
-                        <p>Termos de Uso</p>
+                        <a href="/">Termos de Uso</a>
                     </li>
                     <li>
-                        <p>Privacidade</p>
+                        <a href="/">Privacidade</a>
                     </li>
                 </ul>
             </div>
             <div className="social-media-links">
                 <ul>
                     <li>
-                        <p>
-                            <i className="fab fa-facebook-f">Facebook</i>
-                        </p>
+                        <a href="/">
+                            <i className="fab fa-facebook-f"></i> Facebook
+                        </a>
                     </li>
                     <li>
-                        <p>
-                            <i className="fab fa-twitter">Twitter</i>
-                        </p>
+                        <a href="/">
+                            <i className="fab fa-twitter"></i> Twitter
+                        </a>
                     </li>
                     <li>
-                        <p>
-                            <i className="fab fa-instagram">Instagram</i>
-                        </p>
+                        <a href="/">
+                            <i className="fab fa-instagram"></i> Instagram
+                        </a>
                     </li>
                 </ul>
             </div>

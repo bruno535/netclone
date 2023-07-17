@@ -5,7 +5,7 @@ function MovieTrailer({ movie }) {
 
     useEffect(() => {
         async function fetchTrailer() {
-            const apiKey = process.env.REACT_APP_API_KEY_YT;
+            const apiKey = 'AIzaSyBlpBvR5LkobEWRafYprTPpPrwI4Q_ywOI';
             const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${encodeURIComponent(
                 movie.title ? `${movie.title} trailer` : `${movie.name} trailer`
             )}&key=${apiKey}`;

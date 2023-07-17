@@ -1,10 +1,9 @@
-.movieList {
-    padding: 20px;
+.movieContainer {
+    margin-top: 70px;
 }
 
 .movieList h2 {
     color: #fff;
-    margin-top: 40px;
     font-size: 24px;
     font-weight: bold;
 }
@@ -12,10 +11,12 @@
 .movie {
     position: relative;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .movie img {
-    width: 100%;
     height: auto;
     border-radius: 7px;
     transition: transform 0.3s ease;
@@ -24,6 +25,7 @@
 
 .movie:hover img {
     transform: scale(0.98);
+    border: 2px solid yellowgreen;
 }
 
 .buttonPrev,
@@ -33,19 +35,18 @@
     transform: translateY(-50%);
     font-size: 30px;
     color: #fff;
-    background-color: rgba(156, 156, 156, 0.5);
+    height: 50%;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    border-radius: 50%;
 }
 
 .buttonPrev {
-    left: -20px;
+    left: -10px;
 }
 
 .buttonNext {
-    right: -20px;
+    right: -10px;
 }
 
 .buttonPrev:hover,
@@ -59,7 +60,7 @@
     opacity: 0.5;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .movieList h2 {
         font-size: 20px;
     }

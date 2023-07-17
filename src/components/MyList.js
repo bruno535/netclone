@@ -20,24 +20,38 @@ const MyList = () => {
     const handleRemoveFromList = (movieId) => {
         const updatedMovies = movies.filter((movie) => movie.id !== movieId);
         setMovies(updatedMovies);
-        localStorage.setItem('movies', JSON.stringify(updatedMovies));
+        localStorage.setItem('movies', JSON.stringify(updatedMovies, null, 2));
         alert('Filme removido da lista!');
     };
 
-    if (movies.length === 0) {
-        return <div>Sua lista está vazia.</div>;
-    }
-
     const handleMovieClick = (movieId, isSerie) => {
-        isSerie ? navigate(`/serie/${movieId}`) : navigate(`/movie/${movieId}`);
+        navigate(isSerie ? `/serie/${movieId}` : `/movie/${movieId}`);
     };
 
+    if (movies.length === 0) {
+        return (
+            <>
+                <NavBar />
+                <div className="myListContainer">
+                    <h2>Minha Lista de Filmes</h2>
+                    <div className="emptyDiv">Sua lista está vazia.</div>
+                </div>
+            </>
+        );
+    }
+
+    // Preparar o array de filmes para ter 7 elementos, caso necessário
+    while (movies.length < 7) {
+        movies.push({ empty: true });
+    }
+
     return (
-        <div className='myListContainer movieList'>
+        <div className="myListContainer">
             <NavBar />
             <h2>Minha Lista de Filmes</h2>
 
             <AliceCarousel
+                disableButtonsControls
                 disableDotsControls
                 responsive={{
                     0: { items: 2 },
@@ -47,20 +61,28 @@ const MyList = () => {
                     1024: { items: 7 },
                 }}
             >
-                {movies.map((movie) => {
-                    const isSerie = movie.name ? true : false;
-                    return (<div key={movie.id} className='myListMovie' onClick={() => handleMovieClick(movie.id, isSerie)}>
-                        <img
-                            src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                            alt={movie.title}
-                        />
-                        <button className='button2' onClick={() => handleRemoveFromList(movie.id)}>
-                            Remover
-                        </button>
-                    </div>
-                    )
+                {movies.map((movie, index) => {
+                    const isSerie = !!movie.name;
+                    return (
+                        <div key={index} className="movie">
+                            {movie.poster_path && (
+                                <>
+                                    <img
+                                        onClick={() => handleMovieClick(movie.id, isSerie)}
+                                        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                                        alt={movie.title}
+                                    />
+                                    <button
+                                        className="button1"
+                                        onClick={() => handleRemoveFromList(movie.id)}
+                                    >
+                                        Remover
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    );
                 })}
-
             </AliceCarousel>
         </div>
     );

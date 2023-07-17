@@ -1,3 +1,4 @@
+/* Estilo para o componente de detalhes do filme/seriado */
 .movieDetails {
     height: 100vh;
     display: flex;
@@ -15,7 +16,7 @@
 .movieDetails h2 {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #fff;
+    color: yellowgreen;
 }
 
 .movieDetails .movieDetailsContent {
@@ -63,7 +64,7 @@
         height: 30%;
     }
 
-    .movieDetails .movieDetailsContent h2 {
+    .movieDetails h2 {
         font-size: 20px;
     }
 
